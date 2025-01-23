@@ -1,0 +1,23 @@
+{
+  "name": "smart-inventory-management-system",
+  "version": "1.0.0",
+  "description": "Gage Strong- Favorite quote is Do or do not there is no try",
+  "main": "index.js",
+  "scripts": {
+    "run": "node server.js",
+    "SwaggerAutoGen": "node swagger-autogen.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
