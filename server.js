@@ -1,15 +1,33 @@
 const express = require('express');
-const app = express();
-const routes = require("./routes");
+const session = require('express-session');
+const passport = require('passport');
+const cors = require('cors');
 require('dotenv').config();
 
+const routes = require('./routes');
+require('./config/passport');
+
+const app = express();
+
 app.use(express.json());
+app.use(cors({
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+    origin: "*"
+}));
 
+// Session middleware
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'secret',
+    resave: false,
+    saveUninitialized: true
+}));
 
-app.use('/', routes)
-app.get('/', (req, res) => {
-    res.send('Welcome to the Smart Inventory Management System API');
-});
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Use routes (includes all API and OAuth routes)
+app.use('/', routes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

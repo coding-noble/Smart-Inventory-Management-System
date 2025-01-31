@@ -5,7 +5,7 @@ const doc = {
         title: 'Smart Inventory Management API',
         description: 'API for managing products and locations',
     },
-    host: 'localhost:30000',
+    host: 'localhost:3000',
     schemes: ['http'],
 };
 
