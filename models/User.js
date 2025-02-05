@@ -2,7 +2,7 @@ const mongoose = require('../config/db');
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  email: { type: String, unique: true },
+  email: { type: String, required: false },
   provider: { type: String, required: true },
   providerId: { type: String, required: true, unique: true },
   accessLevel: {

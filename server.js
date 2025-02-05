@@ -8,8 +8,6 @@ const dashboardRoutes = require("./routes/dashboard");
 const routes = require('./routes');
 require('./config/passport');
 
-
-
 const app = express();
 
 app.use(express.json());
