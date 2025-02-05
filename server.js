@@ -20,7 +20,7 @@ app.use(cors({
 }));
 
 // Dashboard route
-app.use("/", dashboardRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 // Session middleware
 app.use(session({
