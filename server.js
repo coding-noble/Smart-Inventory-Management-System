@@ -3,17 +3,24 @@ const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
 require('dotenv').config();
+const dashboardRoutes = require("./routes/dashboard");
 
 const routes = require('./routes');
 require('./config/passport');
 
+
+
 const app = express();
 
 app.use(express.json());
+app.use(express.static("public")); // Serve static files
 app.use(cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     origin: "*"
 }));
+
+// Dashboard route
+app.use("/", dashboardRoutes);
 
 // Session middleware
 app.use(session({
