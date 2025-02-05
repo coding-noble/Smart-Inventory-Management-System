@@ -11,6 +11,16 @@
     "http"
   ],
   "paths": {
+    "/dashboard/api/products": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/auth/github": {
       "get": {
         "description": "",
@@ -89,6 +99,9 @@
                 "quantity": {
                   "example": "any"
                 },
+                "quantityAlert": {
+                  "example": "any"
+                },
                 "location": {
                   "example": "any"
                 }
@@ -160,6 +173,9 @@
                   "example": "any"
                 },
                 "quantity": {
+                  "example": "any"
+                },
+                "quantityAlert": {
                   "example": "any"
                 },
                 "location": {
@@ -399,9 +415,6 @@
                 },
                 "providerId": {
                   "example": "any"
-                },
-                "accessLevel": {
-                  "example": "any"
                 }
               }
             }
@@ -410,9 +423,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
           },
           "409": {
             "description": "Conflict"
@@ -475,9 +485,6 @@
                 },
                 "email": {
                   "example": "any"
-                },
-                "accessLevel": {
-                  "example": "any"
                 }
               }
             }
@@ -486,9 +493,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -515,6 +519,49 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/upgrade/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user access level",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessLevel": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"

@@ -35,7 +35,7 @@ const getSingleUser = async (req, res) => {
 const createUser = async (req, res) => {
     //#swagger.tags = ['User']
     //#swagger.summary = 'Create a new user'
-    const { name, email, provider, providerId, accessLevel } = req.body;
+    const { name, email, provider, providerId } = req.body;
 
     try {
         const existingUser = await User.findOne({ providerId });
@@ -44,17 +44,12 @@ const createUser = async (req, res) => {
             return res.status(409).json({ message: 'User already exists' });
         }
 
-        const validAccessLevels = ['admin', 'employee', 'user'];
-        if (accessLevel && !validAccessLevels.includes(accessLevel)) {
-            return res.status(400).json({ message: 'Invalid access level' });
-        }
-
         const newUser = await User.create({
             name,
             email,
             provider,
             providerId,
-            accessLevel: accessLevel || 'user'
+            accessLevel: 'user'
         });
 
         res.status(201).json(newUser);
@@ -68,7 +63,29 @@ const updateUser = async (req, res) => {
     //#swagger.tags = ['User']
     //#swagger.summary = 'Update user information'
     const { id } = req.params;
-    const { name, email, accessLevel } = req.body;
+    const { name, email } = req.body;
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            { name, email },
+            { new: true }
+        );
+
+        if (!updatedUser) return res.status(404).json({ message: 'User not found' });
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to update user', error: error.message });
+    }
+};
+
+// Update a users access level
+const updateUsersAccessLevel = async (req, res) => {
+    //#swagger.tags = ['User']
+    //#swagger.summary = 'Update user access level'
+    const { id } = req.params;
+    const { accessLevel } = req.body;
 
     try {
         const validAccessLevels = ['admin', 'employee', 'user'];
@@ -78,7 +95,7 @@ const updateUser = async (req, res) => {
 
         const updatedUser = await User.findByIdAndUpdate(
             id,
-            { name, email, accessLevel },
+            { accessLevel },
             { new: true }
         );
 
@@ -86,7 +103,7 @@ const updateUser = async (req, res) => {
 
         res.status(200).json(updatedUser);
     } catch (error) {
-        res.status(500).json({ message: 'Failed to update user', error: error.message });
+        res.status(500).json({ message: 'Failed to update users access level', error: error.message });
     }
 };
 
@@ -111,5 +128,6 @@ module.exports = {
     getSingleUser,
     createUser,
     updateUser,
+    updateUsersAccessLevel,
     deleteUser,
 };
