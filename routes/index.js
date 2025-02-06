@@ -3,14 +3,13 @@ const passport = require("passport");
 
 const router = express.Router();
 
-// Register other API routes
 router.use("/", require("./swaggerRoutes"));
 router.use("/products", require("./productRoutes"));
 router.use("/locations", require("./locationRoutes"));
 router.use("/users", require("./userRoutes"));
 
 // GitHub OAuth Routes
-router.get('/auth/github', passport.authenticate('github', { scope: ['user:email'] }));
+router.get('/github/login', passport.authenticate('github', { scope: ['user:email'] }));
 
 router.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/', session: true }),

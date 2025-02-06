@@ -35,10 +35,10 @@ const getSingleProduct = async (req, res) => {
 const createProduct = async (req, res) => {
     //#swagger.tags = ['Product']
     //#swagger.summary = 'Create a new product'
-    const { name, price, quantity, location } = req.body;
+    const { name, price, quantity, quantityAlert, location } = req.body;
 
     try {
-        const newProduct = await Product.create({ name, price, quantity, location });
+        const newProduct = await Product.create({ name, price, quantity, quantityAlert, location });
         res.status(201).json(newProduct);
     } catch (error) {
         res.status(500).json({ message: 'Failed to create product', error: error.message });
@@ -50,12 +50,12 @@ const updateProduct = async (req, res) => {
     //#swagger.tags = ['Product']
     //#swagger.summary = ''
     const { id } = req.params;
-    const { name, price, quantity, location } = req.body;
+    const { name, price, quantity, quantityAlert, location } = req.body;
 
     try {
         const updatedProduct = await Product.findByIdAndUpdate(
             id,
-            { name, price, quantity, location },
+            { name, price, quantity, quantityAlert, location },
             { new: true }
         );
         if (!updatedProduct) return res.status(404).json({ message: 'Product not found' });
