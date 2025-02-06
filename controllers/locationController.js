@@ -60,6 +60,9 @@ const updateLocation = async (req, res) => {
             { new: true }
         );
         if (!updatedLocation) return res.status(404).json({ message: 'Location not found' });
+
+        await updatedLocation.save();
+
         res.status(200).json(updatedLocation);
     } catch (error) {
         res.status(500).json({ message: 'Failed to update location', error: error.message });

@@ -74,6 +74,8 @@ const updateUser = async (req, res) => {
 
         if (!updatedUser) return res.status(404).json({ message: 'User not found' });
 
+        await updatedUser.save();
+
         res.status(200).json(updatedUser);
     } catch (error) {
         res.status(500).json({ message: 'Failed to update user', error: error.message });
@@ -100,6 +102,8 @@ const updateUsersAccessLevel = async (req, res) => {
         );
 
         if (!updatedUser) return res.status(404).json({ message: 'User not found' });
+
+        await updatedUser.save();
 
         res.status(200).json(updatedUser);
     } catch (error) {
