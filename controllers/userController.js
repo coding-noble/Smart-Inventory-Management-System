@@ -35,7 +35,7 @@ const getSingleUser = async (req, res) => {
 const createUser = async (req, res) => {
     //#swagger.tags = ['User']
     //#swagger.summary = 'Create a new user'
-    const { name, provider, providerId } = req.body;
+    const { name, email, provider, providerId } = req.body;
 
     try {
         const existingUser = await User.findOne({ providerId });
@@ -46,7 +46,7 @@ const createUser = async (req, res) => {
 
         const newUser = await User.create({
             name,
-            email: '',
+            email: email || null,
             provider,
             providerId,
             accessLevel: 'user'
