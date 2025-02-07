@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="./styles/Headerstyle.css">
+    <link rel="stylesheet" href="./styles/dashboard.css">
 </head>
 <body>
     <div id="header"></div> <!-- Load header dynamically -->
 
     <main>
         <h2>Product Dashboard</h2>
+
+        <div class="dashboard-summary">
+            <div class="card">
+                <h3>Total Stock</h3>
+                <p id="totalStock">0%</p>
+            </div>
+            <div class="card">
+                <h3>Low Stock</h3>
+                <p id="lowStock">0%</p>
+            </div>
+            <div class="card">
+                <h3>Most Recent Location</h3>
+                <p id="recentLocation">-</p>
+            </div>
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -29,7 +46,7 @@
     <div id="footer"></div> <!-- Load footer dynamically -->
 
     
-    <script src="./scripts/dashboard.js"></script>
-    <script src="./scripts/script.js"></script>
+    <script src= "./scripts/dashboard.js"></script>
+    <script src= "./scripts/script.js"></script>
 </body>
 </html>

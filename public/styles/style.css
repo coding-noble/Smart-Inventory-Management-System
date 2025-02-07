@@ -133,3 +133,45 @@ tr:nth-child(even) {
     color: red;
     font-weight: bold;
 }
+
+/* Dashboard Summary Cards */
+.dashboard-summary {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.card {
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    background: #333;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-summary {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
