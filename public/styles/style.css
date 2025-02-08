@@ -113,7 +113,8 @@ table {
     overflow: hidden;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
     text-align: center;
@@ -129,10 +130,17 @@ tr:nth-child(even) {
 }
 
 /* Stock Alert */
+/* TEMP ADD CHANGE THIS TO MAKE IT LOOK NICE */
 .low-stock {
-    color: red;
+    background: yellow;
     font-weight: bold;
 }
+
+.out-of-stock {
+    background: red;
+    color: white;
+}
+/* CHANGES END HERE */
 
 /* Dashboard Summary Cards */
 .dashboard-summary {

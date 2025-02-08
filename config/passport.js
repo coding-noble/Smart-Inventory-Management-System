@@ -8,7 +8,7 @@ passport.use(new GitHubStrategy({
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: process.env.GITHUB_CALLBACK_URL
 }, async (accessToken, refreshToken, profile, done) => {
-    console.debug(profile)
+    // console.debug(profile)
     try {
         let user = await User.findOne({ providerId: profile.id });
 

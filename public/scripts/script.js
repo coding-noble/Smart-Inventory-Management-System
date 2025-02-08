@@ -1,12 +1,3 @@
-import { getProducts } from "./api.js"
-
-// Fetch product data
-getProducts().then((data) => {
-  console.log(data);
-}).catch((error) => {
-  console.log("Error fetching products:", error);
-});
-
 function toggleMenu() {
   const sideMenu = document.getElementById("sideMenu");
   sideMenu.classList.toggle("open");
