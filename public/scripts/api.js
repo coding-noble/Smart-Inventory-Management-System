@@ -6,12 +6,12 @@ const USERS_API_URL = BASE_API_URL + "/users";
 // Product Requests
 async function getProducts() {
     const response = await fetch(PRODUCTS_API_URL);
-    return response.json;
+    return response.json();
 }
 
 async function getProduct(productID) {
     const response = await fetch(`${PRODUCTS_API_URL}/${productID}`);
-    return response.json;
+    return response.json();
 }
 
 async function createProduct(productData) {
@@ -118,7 +118,7 @@ async function deleteUser(userID) {
     const response = await fetch(`${USERS_API_URL}/${userID}`, {
         method: "DELETE",
     });
-    return response.json;
+    return response.json();
 }
 
 export {
