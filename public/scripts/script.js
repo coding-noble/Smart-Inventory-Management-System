@@ -1,9 +1,10 @@
-import { getUsers } from "./api.js"
+import { getProducts } from "./api.js"
 
-getUsers().then((data) => {
+// Fetch product data
+getProducts().then((data) => {
   console.log(data);
 }).catch((error) => {
-  console.log("Error fetching users:", error);
+  console.log("Error fetching products:", error);
 });
 
 function toggleMenu() {
