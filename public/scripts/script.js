@@ -23,3 +23,6 @@ function toggleSearch() {
     searchIcon.style.transform = "rotate(90deg)";
   }
 }
+
+window.toggleMenu = toggleMenu;
+window.toggleSearch = toggleSearch;
