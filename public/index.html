@@ -78,41 +78,42 @@
       </ul>
     </div>
     <div class="content">
+      <main>
+        <h2>Product Dashboard</h2>
+    
+        <div class="dashboard-summary">
+            <div class="card">
+                <h3>Total Stock</h3>
+                <p id="totalStock">0%</p>
+            </div>
+            <div class="card">
+                <h3>Low Stock</h3>
+                <p id="lowStock">0%</p>
+            </div>
+            <div class="card">
+                <h3>Most Recent Location</h3>
+                <p id="recentLocation">-</p>
+            </div>
+        </div>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Location</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                <!-- Product data will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </main>
       </div>
   </div>
 
-  <main>
-    <h2>Product Dashboard</h2>
-
-    <div class="dashboard-summary">
-        <div class="card">
-            <h3>Total Stock</h3>
-            <p id="totalStock">0%</p>
-        </div>
-        <div class="card">
-            <h3>Low Stock</h3>
-            <p id="lowStock">0%</p>
-        </div>
-        <div class="card">
-            <h3>Most Recent Location</h3>
-            <p id="recentLocation">-</p>
-        </div>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Location</th>
-                <th>Stock</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody id="productTableBody">
-            <!-- Product data will be inserted here dynamically -->
-        </tbody>
-    </table>
-</main>
+  
 
   <div class="footer">
     <div class="footer-content">
