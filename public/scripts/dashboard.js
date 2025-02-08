@@ -4,11 +4,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
 
     // Fetch product data
-    const response = await fetch("/api/products");
-    const products = await response.json();
+    const response = await fetch("/products");
+    const { products, totalStock, lowStockCount, recentLocation } = await response.json();
 
+    // Update summary cards
+    document.getElementById("totalStock").textContent = `${totalStock}%`;
+    document.getElementById("lowStock").textContent = `${lowStockCount}%`;
+    document.getElementById("recentLocation").textContent = recentLocation || "No data";
+
+    // Update product table
     const tableBody = document.getElementById("productTableBody");
-    tableBody.innerHTML = ""; // Clear table before inserting new data
+    tableBody.innerHTML = ""; // Clear previous data
 
     products.forEach(product => {
         const row = document.createElement("tr");
