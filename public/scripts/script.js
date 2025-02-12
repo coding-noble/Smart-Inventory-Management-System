@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           stock: document.getElementById("newProductStock").value,
       };
 
-      const response = await fetch("/api/products", {
+      const response = await fetch("/products", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newProduct),
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Fetch & display products
   const productList = document.getElementById("productList");
-  const res = await fetch("/api/products");
+  const res = await fetch("/products");
   const products = await res.json();
 
   products.forEach(product => {
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Load products into dropdown
   async function loadProductDropdown() {
       productSelect.innerHTML = '<option value="">Select a product...</option>';
-      const res = await fetch("/api/products");
+      const res = await fetch("/products");
       const products = await res.json();
 
       products.forEach(product => {
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           return;
       }
 
-      const res = await fetch(`/api/products/${selectedId}`);
+      const res = await fetch(`/products/${selectedId}`);
       const product = await res.json();
 
       document.getElementById("productName").value = product.name;
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           stock: document.getElementById("productStock").value,
       };
 
-      const response = await fetch(`/api/products/${editingProductId}`, {
+      const response = await fetch(`/products/${editingProductId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(productData),
