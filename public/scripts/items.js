@@ -32,6 +32,7 @@ function populateTableWithHTML() {
             return `
                 <tr class="${rowClass}">
                   <td>${product.name}</td>
+                  <td>${product.price}</td>
                   <td>${product.location.name}</td>
                   <td>${product.quantity}</td>
                   <td>${stockStatus}</td>
