@@ -1,4 +1,4 @@
-const BASE_API_URL = "http://localhost:3000";
+const BASE_API_URL = "http://localhost:12345";
 const PRODUCTS_API_URL = BASE_API_URL + "/products";
 const LOCATIONS_API_URL = BASE_API_URL + "/locations";
 const USERS_API_URL = BASE_API_URL + "/users";
