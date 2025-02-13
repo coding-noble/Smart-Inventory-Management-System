@@ -4,7 +4,6 @@ let productData;
 document.addEventListener('DOMContentLoaded', () => {
     getProducts().then((data) => {
         productData = data;
-        // console.log(productData);
         populateTableWithHTML();
         attachEventListeners();
     }).catch((error) => {
@@ -100,7 +99,7 @@ async function handleDelete(event) {
     const productId = row.querySelector(".id-column").textContent.trim();
     if (confirm("Are you sure you want to delete this product?")) {
         await deleteProduct(productId);
-        alert("Product deleted successfully!");
+        // alert("Product deleted successfully!");
 
         row.remove();
     }
@@ -153,7 +152,7 @@ async function handleEdit(event) {
                     });
 
                     modal.style.display = "none";
-                    alert("Product updated successfully!");
+                    // alert("Product updated successfully!");
                     location.reload();
                 } catch (error) {
                     console.log("Error updating product:", error);
@@ -200,7 +199,7 @@ function handleAdd() {
                 });
 
                 modal.style.display = "none";
-                alert("Product added successfully!");
+                // alert("Product added successfully!");
                 location.reload();
             } catch (error) {
                 console.log("Error adding product:", error);
