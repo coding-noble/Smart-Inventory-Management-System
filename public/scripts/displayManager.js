@@ -1,16 +1,30 @@
-import { getProducts } from "./api.js"
+import { getProducts, getProduct, updateProduct, deleteProduct } from "./api.js"
 let productData;
 
 document.addEventListener('DOMContentLoaded', () => {
     getProducts().then((data) => {
         productData = data;
-        console.log(productData);
-
+        // console.log(productData);
         populateTableWithHTML();
+        attachEventListeners();
     }).catch((error) => {
         console.log("Error fetching products:", error);
     });
 });
+
+function attachEventListeners() {
+    const editButtons = document.querySelectorAll(".edit-btn");
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    editButtons.forEach((button) => {
+        button.addEventListener("click", handleEdit);
+
+    });
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener("click", handleDelete);
+    });
+}
 
 function populateTableWithHTML() {
     const tableBody = document.getElementById('productTableBody');
@@ -28,7 +42,7 @@ function populateTableWithHTML() {
                 : (product.quantity <= product.quantityAlert
                     ? "low-stock"
                     : "");
-
+5
             return `
                 <tr class="${rowClass}">
                     <td>${product.name}</td>
@@ -53,3 +67,17 @@ function populateTableWithHTML() {
     }
 }
 
+async function handleDelete(event) {
+    const row = event.target.closest("tr");
+    const productId = row.querySelector(".id-column").textContent.trim();
+    if (confirm("Are you sure you want to delete this product?")) {
+        await deleteProduct(productId);
+        alert("Product deleted successfully!");
+
+        row.remove();
+    }
+}
+
+async function handleEdit(event) {
+    console.log("Needs Implementation");
+}

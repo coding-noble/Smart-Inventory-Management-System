@@ -42,14 +42,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("addProductForm").addEventListener("submit", async (e) => {
         e.preventDefault();
 
-      const newProduct = {
-          name: document.getElementById("newProductName").value,
-          price: document.getElementById("newProductPrice").value,
-          stock: document.getElementById("newProductStock").value,
-          quantityAlert: document.getElementById("quantityAlert").value,
-          location: document.getElementById("newProductLocation").value,
-          
-      };
+        const newProduct = {
+            name: document.getElementById("newProductName").value,
+            price: document.getElementById("newProductPrice").value,
+            stock: document.getElementById("newProductStock").value,
+            quantityAlert: document.getElementById("quantityAlert").value,
+            location: document.getElementById("newProductLocation").value,
+
+        };
 
         const response = await fetch("/products", {
             method: "POST",
@@ -57,12 +57,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: JSON.stringify(newProduct),
         });
 
-      if (response.ok) {
-          alert("Product added successfully!");
-          modal.style.display = "none";
-          window.location.reload(); // Refresh to show new product
-      } else {
-          alert("Error adding product.");
-      }
-  });
+        if (response.ok) {
+            alert("Product added successfully!");
+            modal.style.display = "none";
+            window.location.reload(); // Refresh to show new product
+        } else {
+            alert("Error adding product.");
+        }
+    });
 });
