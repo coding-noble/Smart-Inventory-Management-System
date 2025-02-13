@@ -1,65 +1,69 @@
-// const mongoose = require('./db');
-// const Location = require('../models/location');
-// const Product = require('../models/product');
+const mongoose = require('./db');
+const Location = require('../models/Location');
+const Product = require('../models/Product');
+const productNames = [
+    'Laptop', 'Chair', 'Tablet', 'Monitor', 'Phone', 'Desk', 'Headphones', 'TV', 'Couch', 'Keyboard',
+    'Smartwatch', 'Printer', 'Sofa', 'Coffee Table', 'Lamp', 'Washing Machine', 'Refrigerator', 'Microwave',
+    'Blender', 'Fan', 'Speaker', 'Air Conditioner', 'Vacuum Cleaner', 'Camera', 'Drone', 'Electric Kettle',
+    'Smartphone', 'Projector', 'Router', 'Carpet', 'Treadmill', 'Fitness Tracker', 'Wall Clock', 'Freezer',
+    'Guitar', 'Table Lamp', 'Barbecue Grill', 'Food Processor', 'Bluetooth Speaker', 'Electric Fan', 'Juicer',
+    'Recliner', 'Desk Chair', 'Bean Bag', 'Hair Dryer', 'Iron', 'Toaster', 'Smart TV', 'Electric Stove',
+    'Cooktop', 'Waffle Maker', 'Microwave Oven', 'Rice Cooker', 'Hand Blender', 'Clothes Dryer'
+];
 
-// const seedDatabase = async () => {
-//     await Location.deleteMany({});
-//     await Product.deleteMany({});
+// Random product data generator
+const generateRandomProduct = (locationId, quantity = Math.floor(Math.random() * 15) + 1) => {
+    const price = Math.floor(Math.random() * 500) + 50;
+    const quantityAlert = Math.floor(Math.random() * 5) + 1;
 
-//     // Seed Locations
-//     const location1 = new Location({
-//         name: 'Warehouse A',
-//         details: 'Main warehouse for electronics',
-//         products: []
-//     });
+    // Create the product
+    return new Product({
+        name: productNames[Math.floor(Math.random() * productNames.length)],
+        price,
+        quantity,
+        quantityAlert,
+        location: locationId
+    });
+};
 
-//     const location2 = new Location({
-//         name: 'Warehouse B',
-//         details: 'Secondary warehouse for furniture',
-//         products: []
-//     });
+// Seed Database
+const seedDatabase = async () => {
+    await Location.deleteMany({});
+    await Product.deleteMany({});
 
-//     await location1.save();
-//     await location2.save();
+    // Create 4 Locations
+    const locationNames = ['Warehouse A', 'Warehouse B', 'Warehouse C', 'Warehouse D'];
+    const locations = [];
 
-//     // Seed Products for Location 1
-//     const productsForLocation1 = [];
-//     for (let i = 0; i < 10; i++) {
-//         const product = new Product({
-//             name: `Product ${i + 1} (Electronics)`,
-//             price: (i + 1) * 50,  // Price ranging from $50 to $750
-//             quantity: (i + 1) * 10,  // Quantity ranging from 10 to 150
-//             quantityAlert: 10,  // Alert when less than 10 in stock
-//             location: location1._id
-//         });
+    for (let i = 0; i < locationNames.length; i++) {
+        const location = new Location({
+            name: locationNames[i],
+            details: 'needs description',
+            products: []
+        });
+        locations.push(await location.save());
+    }
 
-//         productsForLocation1.push(product);
-//         await product.save();
-//     }
+    for (let i = 0; i < locations.length; i++) {
+        const product = generateRandomProduct(locations[i]._id, 0);
+        await product.save();
+        locations[i].products.push(product._id);
+        await locations[i].save();
+    }
 
-//     // Seed Products for Location 2
-//     const productsForLocation2 = [];
-//     for (let i = 0; i < 10; i++) {
-//         const product = new Product({
-//             name: `Product ${i + 1} (Furniture)`,
-//             price: (i + 1) * 75,  // Price ranging from $75 to $1125
-//             quantity: (i + 1) * 5,  // Quantity ranging from 5 to 75
-//             quantityAlert: 5,  // Alert when less than 5 in stock
-//             location: location2._id
-//         });
+    for (let i = 0; i < 100; i++) {
+        const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+        const randomProduct = generateRandomProduct(randomLocation._id);
+        await randomProduct.save();
+        randomLocation.products.push(randomProduct._id);
+        await randomLocation.save();
+    }
 
-//         productsForLocation2.push(product);
-//         await product.save();
-//     }
+    console.debug("Database successfully seeded!");
+};
 
-//     // Update Locations with product references
-//     location1.products = productsForLocation1.map(product => product._id);
-//     location2.products = productsForLocation2.map(product => product._id);
-
-//     await location1.save();
-//     await location2.save();
-// }
-
-// seedDatabase().then(() => {
-//     console.log("Seeded")
-// })
+seedDatabase().then(() => {
+    mongoose.connection.close();
+}).catch((error) => {
+    console.error("Error seeding database:", error);
+});

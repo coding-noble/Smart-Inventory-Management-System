@@ -45,7 +45,6 @@ function populateTableWithHTML() {
                 : (product.quantity <= product.quantityAlert
                     ? "low-stock"
                     : "");
-            5
             return `
                 <tr class="${rowClass}">
                     <td>${product.name}</td>
@@ -63,11 +62,37 @@ function populateTableWithHTML() {
             `;
         }).join('');
 
-        tableBody.innerHTML = rowsHTML;
+        tableBody.innerHTML += rowsHTML;
+        document.getElementById('searchInput').addEventListener('input', filterTable);
     } catch (error) {
         console.log(error);
         tableBody.innerText = "You must be logged in.";
     }
+}
+
+function filterTable() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+    const rows = document.querySelectorAll('#productTableBody tr'); // Select all rows inside the table body
+    const noResultsRow = document.getElementById('noResultsRow');
+    let matchFound = false;
+
+    rows.forEach(row => {
+        // Ignore the "No results" row
+        if (row.id === 'noResultsRow') return;
+
+        // Get all text content in the row (ignoring hidden elements)
+        const rowText = row.textContent.toLowerCase();
+
+        if (rowText.includes(searchInput)) {
+            row.style.display = "";
+            matchFound = true;
+        } else {
+            row.style.display = "none";
+        }
+    });
+
+    // Show "No results" row if nothing matches
+    noResultsRow.style.display = matchFound ? "none" : "";
 }
 
 async function handleDelete(event) {
@@ -110,7 +135,7 @@ async function handleEdit(event) {
 
         const form = document.getElementById("productForm");
         form.onsubmit = async (event) => {
-            event.preventDefault(); 
+            event.preventDefault();
             const updatedName = document.getElementById("editProductName").value;
             const updatedPrice = parseFloat(document.getElementById("editProductPrice").value);
             const updatedQuantity = parseInt(document.getElementById("editProductStock").value);
@@ -143,7 +168,7 @@ async function handleEdit(event) {
 
 function handleAdd() {
     const modal = document.getElementById("productModal");
-    modal.style.display = "block"; 
+    modal.style.display = "block";
 
     document.getElementById("modalTitle").textContent = "Add New Product";
     document.getElementById("formSubmitButton").textContent = "Add Product";

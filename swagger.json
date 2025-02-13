@@ -11,6 +11,16 @@
     "http"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/github/login": {
       "get": {
         "description": "",
@@ -25,11 +35,8 @@
       "get": {
         "description": "",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": ""
           }
         }
       }
@@ -152,7 +159,7 @@
         "tags": [
           "Product"
         ],
-        "summary": "",
+        "summary": "Update a product",
         "description": "",
         "parameters": [
           {

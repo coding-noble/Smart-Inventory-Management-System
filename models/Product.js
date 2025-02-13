@@ -6,6 +6,8 @@ const productSchema = new mongoose.Schema({
   quantity: { type: Number, required: true, default: 1 },
   quantityAlert: { type: Number, required: true, default: 0 },
   location: { type: mongoose.Schema.Types.ObjectId, ref: 'Location', required: false },
+}, {
+  optimisticConcurrency: true
 });
 
 const Product = mongoose.model('Product', productSchema);
