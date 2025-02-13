@@ -87,17 +87,26 @@
 
 
                 <div class="dashboard-summary">
-                    <div class="card">
+                  <div class="card">
+                    <div class="card-content">
                         <h3>Most Used Product</h3>
                         <p id="mostUsed">Product name</p>
                     </div>
+                    <img id="card-icon" src="images/box.png" alt="Card Icon">
+                </div>
                     <div class="card">
+                      <div class="card-content">
                         <h3>Low Stock</h3>
                         <p id="lowStock">0%</p>
+                      </div>
+                      <img id="card-icon" src="images/lowstock.png" alt="Card Icon">
                     </div>
                     <div class="card">
+                      <div class="card-content">
                         <h3>Most Used Location</h3>
                         <p id="usedtLocation">Location name</p>
+                      </div>
+                      <img id="card-icon" src="images/location.png" alt="Card Icon">
                     </div>
                 </div>
                 <button id="openModalBtn">+ Add Product</button>
@@ -131,6 +140,7 @@
                             <th>Location</th>
                             <th>Stock</th>
                             <th>Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="productTableBody">

@@ -8,6 +8,9 @@ table {
     border-radius: 8px;
     overflow: hidden;
 }
+.id-column {
+    display: none;
+}
 
 th, td {
     padding: 12px;
@@ -77,10 +80,17 @@ main {
     border: 1px solid #EEEEEE;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
-    position: relative;
+    position: relative; /* Needed for absolute positioning of the icon */
     display: flex; /* Use flexbox for vertical alignment */
     flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
+}
+.card-content {
+    grid-column: 1; /* Content in the first column */
+    display: flex;
+    flex-direction: column; /* h3 and p stacked vertically */
+    justify-content: center; /* Center h3 and p vertically */
+    flex-grow: 1; /* Allow content to take up available space */
+
 }
 
 .card:hover {
@@ -107,16 +117,23 @@ main {
 
 .card h3 {
     font-size: 1.2em;
-    margin-bottom: 5px;
     color: #333333; /* Text: Dark Charcoal */
+    margin: 0;
 }
-
 .card p {
     font-size: 1.5em;
     font-weight: 600;
     color: #333333; /* Text: Dark Charcoal */
-    margin-top: 5px; /* Add some top margin to the number */
+    margin: 0; 
 }
+.card #card-icon {
+    position: absolute; /* Position the icon absolutely */
+    top: 10px; /* Adjust top position as needed */
+    right: 40px; /* Adjust right position as needed */
+    width: 75px; /* Adjust as needed */
+    height: 75px; /* Adjust as needed */
+}
+    
 
 /* Add Product Button */
 #openModalBtn {
@@ -274,18 +291,30 @@ button[type="submit"]:hover {
 
 
 /* Responsive */
+@media (max-width: 1500px) { /* Adjust breakpoint as needed */
+    #card-icon {
+        display: none;
+    }
+}
+
 @media (max-width: 992px) { /* Adjust breakpoint as needed */
     .card {
         width: calc(50% - 20px); /* Two cards per row */
     }
+
 }
 
 @media (max-width: 768px) {
     .dashboard-summary {
         flex-direction: column; /* Stack cards vertically */
+            #card-icon{
+        display:none;
+    }
     }
 
     .card {
         width: 100%;
     }
+
 }
+

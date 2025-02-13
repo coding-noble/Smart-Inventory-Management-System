@@ -31,13 +31,17 @@ function populateTableWithHTML() {
 
             return `
                 <tr class="${rowClass}">
-                  <td>${product.name}</td>
-                  <td>${product.location.name}</td>
-                  <td>${product.price}</td>
-                  <td>${product.quantity}</td>
-                  <td>${stockStatus}</td>
-                  <td><button>Edit</button><button>Delete</button></td>
-                  <td>${product._id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>  <td>${product.location.name}</td>
+                    <td>${product.quantity}</td>
+                    <td>${stockStatus}</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">
+                            <i class="fas fa-trash-alt"></i> 
+                        </button>
+                    </td> 
+                    <td class="id-column">${product._id}</td>
                 </tr>
             `;
         }).join('');

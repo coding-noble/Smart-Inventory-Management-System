@@ -146,6 +146,7 @@ body {
   }
   
   .sidebar {
+    display:none;
     background-color: #FFFFFF;
     color: #333333;
     width: 200px;
@@ -191,8 +192,9 @@ body {
   }
   
   .sidebar.open {
-    transform: translateX(0);
-  }
+    display:block;
+    transform: translateX(0); /* Slide in */
+}
   
   .footer {
     background-color: #FFFFFF;
