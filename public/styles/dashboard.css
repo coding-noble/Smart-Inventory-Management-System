@@ -3,7 +3,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px auto;
-    background: #FFFFFF; /* Background: Off-White */
+    background: #FFFFFF;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -12,7 +12,6 @@ table {
 th, td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
-    text-align: left; /* Align text to the left */
     color: #333333; /* Text: Dark Charcoal */
 }
 
@@ -26,11 +25,37 @@ tr:nth-child(even) {
     background-color: #F9F9F9; /* Background: Off-White */
 }
 
-/* Stock Alert */
-.low-stock {
-    color: red;
-    font-weight: bold;
+td {
+    text-align: center; /* Center the cell content */
 }
+CSS
+
+main {
+  position: relative; /* Needed for absolute positioning of the button */
+}
+
+#openModalBtn { /* Target the button directly */
+  top: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  float:right;
+}
+
+.low-stock {
+    font-weight: bold;
+    padding: 5px; /* Add some padding for better visual */
+    background-color: #fff38a; 
+}
+
+.out-of-stock {
+    font-weight: bold;
+    padding: 5px;
+    background-color: #ffcccc !important; /* !important added */
+    color: #990000 !important; /* !important added */
+    border-radius: 4px;
+}
+
+
+
 
 /* Dashboard Summary Cards */
 .dashboard-summary {
