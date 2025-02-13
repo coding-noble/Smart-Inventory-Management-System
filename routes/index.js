@@ -27,9 +27,4 @@ router.get('/logout', (req, res) => {
     });
 });
 
-// Root endpoint
-router.get('/', (req, res) => {
-    res.send(req.isAuthenticated() ? `Logged in as ${req.user.name}` : "Logged Out");
-});
-
 module.exports = router;

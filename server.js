@@ -3,7 +3,6 @@ const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
 require('dotenv').config();
-const dashboardRoutes = require("./routes/dashboard");
 
 const routes = require('./routes');
 require('./config/passport');
@@ -16,9 +15,6 @@ app.use(cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
     origin: "*"
 }));
-
-// Dashboard route
-app.use("/dashboard", dashboardRoutes);
 
 // Session middleware
 app.use(session({
@@ -33,6 +29,14 @@ app.use(passport.session());
 
 // Use routes (includes all API and OAuth routes)
 app.use('/', routes);
+
+app.get('/', (req, res) => {
+    if (req.user) {
+        res.render('index', { userName: req.user.name });
+    } else {
+        res.render('index', { userName: 'Guest' });
+    }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
