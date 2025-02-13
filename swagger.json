@@ -5,13 +5,13 @@
     "description": "API for managing products and locations",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "localhost:12345",
   "basePath": "/",
   "schemes": [
     "http"
   ],
   "paths": {
-    "/dashboard/api/products": {
+    "/dashboard/products": {
       "get": {
         "description": "",
         "responses": {

@@ -87,49 +87,51 @@
 
 
                 <div class="dashboard-summary">
-                  <div class="card">
-                    <div class="card-content">
-                        <h3>Most Used Product</h3>
-                        <p id="mostUsed">Product name</p>
-                    </div>
-                    <img id="card-icon" src="images/box.png" alt="Card Icon">
-                </div>
                     <div class="card">
-                      <div class="card-content">
-                        <h3>Low Stock</h3>
-                        <p id="lowStock">0%</p>
-                      </div>
-                      <img id="card-icon" src="images/lowstock.png" alt="Card Icon">
+                        <div class="card-content">
+                            <h3>Most Used Product</h3>
+                            <p id="mostUsed">Product name</p>
+                        </div>
+                        <img id="card-icon" src="images/box.png" alt="Card Icon">
                     </div>
                     <div class="card">
-                      <div class="card-content">
-                        <h3>Most Used Location</h3>
-                        <p id="usedtLocation">Location name</p>
-                      </div>
-                      <img id="card-icon" src="images/location.png" alt="Card Icon">
+                        <div class="card-content">
+                            <h3>Low Stock</h3>
+                            <p id="lowStock">0%</p>
+                        </div>
+                        <img id="card-icon" src="images/lowstock.png" alt="Card Icon">
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Most Used Location</h3>
+                            <p id="usedtLocation">Location name</p>
+                        </div>
+                        <img id="card-icon" src="images/location.png" alt="Card Icon">
                     </div>
                 </div>
-                <button id="openModalBtn">+ Add Product</button>
+                <button id="addProductBtn">+ Add Product</button>
 
-                <div id="addProductModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <h3>Add New Product</h3>
-                        <form id="addProductForm">
-                            <label>Product Name:</label>
-                            <input type="text" id="newProductName" required>
-                            <label>Price:</label>
-                            <input type="number" id="newProductPrice" required>
-                            <label>Stock:</label>
-                            <input type="number" id="newProductStock" required>
-                            <label>Quantity Alert:</label>
-                            <input type="number" id="quantityAlert" required>
-                            <label>Location:</label>
-                            <input type="text" id="newProductLocation" required>
+                <div id="productModal" class="modal-content" style="display:none;">
+                    <span class="close">×</span>
+                    <h3 id="modalTitle">Add New Product</h3>
+                    <form id="productForm">
+                        <label>Product Name:</label>
+                        <input type="text" id="editProductName" required="">
 
-                            <button type="submit">Add Product</button>
-                        </form>
-                    </div>
+                        <label>Price:</label>
+                        <input type="number" id="editProductPrice" required="">
+
+                        <label>Stock:</label>
+                        <input type="number" id="editProductStock" required="">
+
+                        <label>Quantity Alert:</label>
+                        <input type="number" id="editQuantityAlert" required="">
+
+                        <label>Location:</label>
+                        <input type="text" id="editProductLocation" required="">
+
+                        <button type="submit" id="formSubmitButton">Add Product</button>
+                    </form>
                 </div>
 
                 <table>
@@ -144,7 +146,7 @@
                         </tr>
                     </thead>
                     <tbody id="productTableBody">
-                        </tbody>
+                    </tbody>
                 </table>
 
             </main>
