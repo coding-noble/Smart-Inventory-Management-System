@@ -66,7 +66,7 @@ function populateTableWithHTML() {
         document.getElementById('searchInput').addEventListener('input', filterTable);
     } catch (error) {
         console.log(error);
-        tableBody.innerText = "You must be logged in.";
+        tableBody.innerHTML = "You must be <a href='/github/login'>login</a> to view products. You are not logged in.";
     }
 }
 
