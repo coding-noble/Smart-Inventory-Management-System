@@ -72,8 +72,8 @@ This is a simple **Inventory Management System** built using **Node.js**, **Expr
 | POST   | `/products`     | Add a new product |
 | PUT    | `/products/:id` | Edit a product    |
 | DELETE | `/products/:id` | Delete a product  |
-| POST   | `/auth/login`   | User login        |
-| POST   | `/auth/logout`  | User logout       |
+| POST   | `/github/login`   | User login        |
+| POST   | `/logout`  | User logout       |
 
 ## ✨ Contributions
 
